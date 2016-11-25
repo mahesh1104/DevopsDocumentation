@@ -1,0 +1,9 @@
+## knife commands 
+
+- To upload cookbook
+
+`knife cookbook upload <cookbookname>` 
+
+- To run cookbook from workstation 
+
+`knife ssh "tags:patch AND platform:redhat AND chef_environment:97patchingpoc_dev" -x "username" -P "password" "sudo chef-client -o recipe[pas_jenkins_post_patch_linux]"`
