@@ -42,3 +42,23 @@
  
  
  then run chef-client on the server
+
+
+
+
+## Databags
+Create data bag
+`knife data bag create <data bag name>`
+`knife data bag from file <data bag name> <json file>.json`
+
+To show data bags available 
+`knife data bag list`
+
+To show data bags
+`knife data bag show <data bag name> `
+
+Usage 
+
+user = data_bag_item('databag name', 'databag id');
+
+user['id']
