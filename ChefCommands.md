@@ -1,46 +1,51 @@
-## knife commands 
+## knife commands
 
-- To upload cookbook
- 
-`knife cookbook upload <cookbookname>` 
+1. Create a cookbook.
+<pre>Chef generate `repo`</pre>
+<pre>knife cookbook create `cookbookname`</pre>
+2. Add dependencies to the cookbook.
 
-- To run cookbook from workstation 
+ we need to add in metadata file `depends cookbooname` , then run berks command `berks install` it will download the dependencies to user/.bershelf/cookbooks
 
-`knife ssh "tags:patch AND platform:redhat AND chef_environment:97patchingpoc_dev" -x "username" -P "password" "sudo chef-client -o recipe[pas_jenkins_post_patch_linux]"`
+3. To upload cookbook
+<pre> knife cookbook upload `cookbookname` </pre>
+<pre> berks upload --no-ssl-verify </pre>
 
- - List of Commands
- 
- Chef generate repo
- knife cookbook create cookbookname
- 
- if we include other cookbook which has dependencies
- 
- we need to add in metadata file `depends cookbooname`
- 
- then run berks command `berks install` 
- 
- it will download the dependencies to user/.bershelf/cookbooks
- 
- Creating a role 
+4. Set runlist for the server.
+<pre>knife node list</pre>
+<pre>knife node run_list add nodename 'role[cookbookname]' </pre>
+
+5. Run cookbook.
+
+    `chef-client` on the server.
+
+6.  To run cookbook from workstation
+
+`knife ssh "tags:<tag name> AND platform:<operating systme> AND chef_environment:<environment>" -x "username" -P "password" "sudo chef-client -o recipe[cookbookname]"`
+
+----------------------------------------------
+
+
+ Creating a role
    - add runlist
-   
+
   To see list of roles
    `knife role list`
- 
+
  To add the role
  `kinfe role from_file filename`
- 
+
  `knife role show cookbookname`
- 
+
  `knife cookbook list`
- 
- `berks upload --no-ssl-verify`
- 
+
+
+
  `knife node list`
- 
+
  `knife node run_list add nodename 'role[cookbookname]'`
- 
- 
+
+
  then run chef-client on the server
 
 
@@ -51,13 +56,13 @@ Create data bag
 `knife data bag create <data bag name>`
 `knife data bag from file <data bag name> <json file>.json`
 
-To show data bags available 
+To show data bags available
 `knife data bag list`
 
 To show data bags
 `knife data bag show <data bag name> `
 
-Usage 
+Usage
 
 user = data_bag_item('databag name', 'databag id');
 
