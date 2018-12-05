@@ -1,0 +1,6 @@
+touch test.py
+git init
+git add test.py
+git commit -m "first py file"
+git remote add origin https://github.com/mahesh1104/DevopsDocumentation/new/master
+git push -u origin master 
